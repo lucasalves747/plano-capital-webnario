@@ -630,83 +630,91 @@ export default function Home() {
 
       <div className="gold-divider" />
 
-      {/* O QUE VOCÊ VAI APRENDER */}
-      <section style={{ padding: isMobile ? "3.5rem 1.25rem" : "5rem 1.5rem", maxWidth: "760px", margin: "0 auto" }}>
-        <div className="animate-fade-in-up" style={{ marginBottom: "3rem", textAlign: "center" }}>
-          <p className="section-label" style={{ marginBottom: "0.75rem" }}>
-            Neste Encontro Estratégico
-          </p>
-          <h2
-            className="headline-serif"
-            style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)" }}
-          >
-            O que você vai aprender
-          </h2>
-        </div>
-
-        <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
-          {learningPoints.map((point, i) => (
-            <div
-              key={i}
-              className="animate-fade-in-up"
-              style={{
-                animationDelay: `${i * 0.08}s`,
-                display: "flex",
-                gap: isMobile ? "0.9rem" : "1.25rem",
-                alignItems: "flex-start",
-                padding: isMobile ? "1.25rem 1rem" : "1.5rem",
-                backgroundColor: BG_CARD,
-                borderLeft: `2px solid ${GOLD}`,
-                transition: "background-color 200ms ease",
-              }}
-              onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLDivElement).style.backgroundColor = "#181818")
-              }
-              onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLDivElement).style.backgroundColor = BG_CARD)
-              }
+      {/* O QUE VOCÊ VAI APRENDER — seção clara: quebra o ritmo escuro da página */}
+      <section
+        style={{
+          padding: isMobile ? "4rem 1.25rem" : "6rem 1.5rem",
+          backgroundColor: BG_LIGHT,
+        }}
+      >
+        <div style={{ maxWidth: "760px", margin: "0 auto" }}>
+          <div className="animate-fade-in-up" style={{ marginBottom: "3rem", textAlign: "center" }}>
+            <p className="section-label" style={{ marginBottom: "0.75rem", color: GOLD_DEEP }}>
+              Neste Encontro Estratégico
+            </p>
+            <h2
+              className="headline-serif"
+              style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)", color: INK }}
             >
+              O que você vai aprender
+            </h2>
+          </div>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+            {learningPoints.map((point, i) => (
               <div
+                key={i}
+                className="animate-fade-in-up"
                 style={{
-                  fontFamily: "'Playfair Display', serif",
-                  fontSize: "1.6rem",
-                  fontWeight: 700,
-                  color: GOLD,
-                  opacity: 0.3,
-                  lineHeight: 1,
-                  minWidth: "2rem",
-                  textAlign: "right",
+                  animationDelay: `${i * 0.08}s`,
+                  display: "flex",
+                  gap: isMobile ? "0.9rem" : "1.25rem",
+                  alignItems: "flex-start",
+                  padding: isMobile ? "1.25rem 1rem" : "1.5rem",
+                  backgroundColor: "#FFFFFF",
+                  borderLeft: `2px solid ${GOLD}`,
+                  boxShadow: "0 2px 6px rgba(23,22,15,0.06)",
+                  transition: "background-color 200ms ease",
                 }}
+                onMouseEnter={(e) =>
+                  ((e.currentTarget as HTMLDivElement).style.backgroundColor = "#FCFBF7")
+                }
+                onMouseLeave={(e) =>
+                  ((e.currentTarget as HTMLDivElement).style.backgroundColor = "#FFFFFF")
+                }
               >
-                {String(i + 1).padStart(2, "0")}
-              </div>
-              <div>
-                <h3
+                <div
                   style={{
                     fontFamily: "'Playfair Display', serif",
-                    fontSize: "1.05rem",
-                    fontWeight: 600,
-                    color: TEXT_PRIMARY,
-                    marginBottom: "0.4rem",
-                    lineHeight: 1.3,
+                    fontSize: "1.6rem",
+                    fontWeight: 700,
+                    color: GOLD_DEEP,
+                    opacity: 0.4,
+                    lineHeight: 1,
+                    minWidth: "2rem",
+                    textAlign: "right",
                   }}
                 >
-                  {point.title}
-                </h3>
-                <p
-                  style={{
-                    fontFamily: "'Montserrat', sans-serif",
-                    fontSize: "0.88rem",
-                    color: TEXT_SECONDARY,
-                    lineHeight: 1.75,
-                    margin: 0,
-                  }}
-                >
-                  {point.desc}
-                </p>
+                  {String(i + 1).padStart(2, "0")}
+                </div>
+                <div>
+                  <h3
+                    style={{
+                      fontFamily: "'Playfair Display', serif",
+                      fontSize: "1.05rem",
+                      fontWeight: 600,
+                      color: INK,
+                      marginBottom: "0.4rem",
+                      lineHeight: 1.3,
+                    }}
+                  >
+                    {point.title}
+                  </h3>
+                  <p
+                    style={{
+                      fontFamily: "'Montserrat', sans-serif",
+                      fontSize: "0.88rem",
+                      color: INK_SECONDARY,
+                      lineHeight: 1.75,
+                      margin: 0,
+                    }}
+                  >
+                    {point.desc}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
@@ -785,19 +793,14 @@ export default function Home() {
 
       <div className="gold-divider" />
 
-      {/* SOBRE O MENTOR — seção clara: quebra o ritmo escuro da página */}
+      {/* SOBRE O MENTOR */}
       <section
         id="sobre"
-        style={{
-          padding: isMobile ? "4rem 1.25rem" : "6rem 1.5rem",
-          backgroundColor: BG_LIGHT,
-        }}
+        style={{ padding: isMobile ? "3.5rem 1.25rem" : "5rem 1.5rem", maxWidth: "900px", margin: "0 auto" }}
       >
         <div
           className="animate-fade-in-up"
           style={{
-            maxWidth: "900px",
-            margin: "0 auto",
             display: "grid",
             gridTemplateColumns: isMobile ? "1fr" : "1fr 1.6fr",
             gap: isMobile ? "2rem" : "3rem",
@@ -814,7 +817,6 @@ export default function Home() {
               maxWidth: isMobile ? "340px" : "none",
               width: "100%",
               margin: isMobile ? "0 auto" : undefined,
-              boxShadow: "0 6px 8px rgba(23,22,15,0.18)",
             }}
           >
             <img
@@ -870,12 +872,12 @@ export default function Home() {
 
           {/* Mentor bio */}
           <div>
-            <p className="section-label" style={{ marginBottom: "0.75rem", color: GOLD_DEEP }}>
+            <p className="section-label" style={{ marginBottom: "0.75rem" }}>
               Sobre o Mentor
             </p>
             <h2
               className="headline-serif"
-              style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)", marginBottom: "1.5rem", color: INK }}
+              style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)", marginBottom: "1.5rem" }}
             >
               20+ anos construindo negócios de alto desempenho
             </h2>
@@ -883,7 +885,7 @@ export default function Home() {
               style={{
                 fontFamily: "'Montserrat', sans-serif",
                 fontSize: "0.9rem",
-                color: INK_SECONDARY,
+                color: TEXT_SECONDARY,
                 lineHeight: 1.9,
                 marginBottom: "1.5rem",
               }}
@@ -896,7 +898,7 @@ export default function Home() {
               style={{
                 fontFamily: "'Montserrat', sans-serif",
                 fontSize: "0.9rem",
-                color: INK_SECONDARY,
+                color: TEXT_SECONDARY,
                 lineHeight: 1.9,
                 marginBottom: "2rem",
               }}
@@ -914,7 +916,7 @@ export default function Home() {
                   fontFamily: "'Playfair Display', serif",
                   fontSize: "1rem",
                   fontStyle: "italic",
-                  color: INK,
+                  color: TEXT_PRIMARY,
                   lineHeight: 1.75,
                   margin: 0,
                 }}
@@ -925,7 +927,7 @@ export default function Home() {
                 style={{
                   fontFamily: "'Montserrat', sans-serif",
                   fontSize: "0.75rem",
-                  color: GOLD_DEEP,
+                  color: GOLD,
                   letterSpacing: "0.1em",
                   textTransform: "uppercase",
                   marginTop: "0.5rem",
