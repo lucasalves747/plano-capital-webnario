@@ -4,6 +4,10 @@ import { getTracking } from "./tracking";
 const WEBHOOK_URL =
   "https://contact-blossom-39.lovable.app/api/public/contatos/ck_bbf86380_bbf863806b4d8493ecc18133fdaada0db4550266241c8f1871d335968eb273d5";
 
+// Webhook adicional (LeadConnector) — recebe apenas nome, email e telefone
+const LEADCONNECTOR_URL =
+  "https://services.leadconnectorhq.com/hooks/dkM0aNpySiIFf3uusFTa/webhook-trigger/fd05de75-bfe1-4e6f-b354-7337bcc868fc";
+
 // Tag usada para identificar de qual site o lead veio
 const SITE_TAG = "Escala Inteligente - Webinário";
 
@@ -43,11 +47,24 @@ export async function submitLead(lead: LeadInput): Promise<boolean> {
     utm_content: tracking.utm_content,
   };
 
+  // Os dois webhooks são disparados em paralelo; a falha de um não impede o outro
+  const [crmOk, lcOk] = await Promise.all([
+    postJson(WEBHOOK_URL, body),
+    postJson(LEADCONNECTOR_URL, {
+      nome: lead.nome,
+      email: lead.email,
+      telefone: lead.telefone,
+    }),
+  ]);
+  return crmOk && lcOk;
+}
+
+async function postJson(url: string, payload: unknown): Promise<boolean> {
   try {
-    const res = await fetch(WEBHOOK_URL, {
+    const res = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
+      body: JSON.stringify(payload),
       // keepalive garante o envio mesmo se a página navegar logo em seguida
       keepalive: true,
     });
