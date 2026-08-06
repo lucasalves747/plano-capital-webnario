@@ -241,6 +241,22 @@
   .input-dark::placeholder { color: #555550; }
   .input-dark:focus { border-color: #C9A84C; }
 
+  /* Form input styling — variante para seção clara */
+  .input-light {
+    background-color: #FFFFFF;
+    border: 1px solid #D8D6CC;
+    color: #17160F;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    padding: 0.875rem 1.25rem;
+    border-radius: 2px;
+    width: 100%;
+    transition: border-color 200ms ease;
+    outline: none;
+  }
+  .input-light::placeholder { color: #6B695E; }
+  .input-light:focus { border-color: #7A5E17; }
+
   /* Section label */
   .section-label {
     font-family: 'Montserrat', sans-serif;
@@ -262,7 +278,8 @@
   /* ── Ajustes mobile ─────────────────────────────────────────────── */
   @media (max-width: 767px) {
     /* 16px evita o zoom automático do iOS ao focar o campo */
-    .input-dark {
+    .input-dark,
+    .input-light {
       font-size: 1rem;
       padding: 0.9rem 1rem;
     }

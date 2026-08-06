@@ -630,91 +630,83 @@ export default function Home() {
 
       <div className="gold-divider" />
 
-      {/* O QUE VOCÊ VAI APRENDER — seção clara: quebra o ritmo escuro da página */}
-      <section
-        style={{
-          padding: isMobile ? "4rem 1.25rem" : "6rem 1.5rem",
-          backgroundColor: BG_LIGHT,
-        }}
-      >
-        <div style={{ maxWidth: "760px", margin: "0 auto" }}>
-          <div className="animate-fade-in-up" style={{ marginBottom: "3rem", textAlign: "center" }}>
-            <p className="section-label" style={{ marginBottom: "0.75rem", color: GOLD_DEEP }}>
-              Neste Encontro Estratégico
-            </p>
-            <h2
-              className="headline-serif"
-              style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)", color: INK }}
-            >
-              O que você vai aprender
-            </h2>
-          </div>
+      {/* O QUE VOCÊ VAI APRENDER */}
+      <section style={{ padding: isMobile ? "3.5rem 1.25rem" : "5rem 1.5rem", maxWidth: "760px", margin: "0 auto" }}>
+        <div className="animate-fade-in-up" style={{ marginBottom: "3rem", textAlign: "center" }}>
+          <p className="section-label" style={{ marginBottom: "0.75rem" }}>
+            Neste Encontro Estratégico
+          </p>
+          <h2
+            className="headline-serif"
+            style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)" }}
+          >
+            O que você vai aprender
+          </h2>
+        </div>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
-            {learningPoints.map((point, i) => (
+        <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+          {learningPoints.map((point, i) => (
+            <div
+              key={i}
+              className="animate-fade-in-up"
+              style={{
+                animationDelay: `${i * 0.08}s`,
+                display: "flex",
+                gap: isMobile ? "0.9rem" : "1.25rem",
+                alignItems: "flex-start",
+                padding: isMobile ? "1.25rem 1rem" : "1.5rem",
+                backgroundColor: BG_CARD,
+                borderLeft: `2px solid ${GOLD}`,
+                transition: "background-color 200ms ease",
+              }}
+              onMouseEnter={(e) =>
+                ((e.currentTarget as HTMLDivElement).style.backgroundColor = "#181818")
+              }
+              onMouseLeave={(e) =>
+                ((e.currentTarget as HTMLDivElement).style.backgroundColor = BG_CARD)
+              }
+            >
               <div
-                key={i}
-                className="animate-fade-in-up"
                 style={{
-                  animationDelay: `${i * 0.08}s`,
-                  display: "flex",
-                  gap: isMobile ? "0.9rem" : "1.25rem",
-                  alignItems: "flex-start",
-                  padding: isMobile ? "1.25rem 1rem" : "1.5rem",
-                  backgroundColor: "#FFFFFF",
-                  borderLeft: `2px solid ${GOLD}`,
-                  boxShadow: "0 2px 6px rgba(23,22,15,0.06)",
-                  transition: "background-color 200ms ease",
+                  fontFamily: "'Playfair Display', serif",
+                  fontSize: "1.6rem",
+                  fontWeight: 700,
+                  color: GOLD,
+                  opacity: 0.3,
+                  lineHeight: 1,
+                  minWidth: "2rem",
+                  textAlign: "right",
                 }}
-                onMouseEnter={(e) =>
-                  ((e.currentTarget as HTMLDivElement).style.backgroundColor = "#FCFBF7")
-                }
-                onMouseLeave={(e) =>
-                  ((e.currentTarget as HTMLDivElement).style.backgroundColor = "#FFFFFF")
-                }
               >
-                <div
+                {String(i + 1).padStart(2, "0")}
+              </div>
+              <div>
+                <h3
                   style={{
                     fontFamily: "'Playfair Display', serif",
-                    fontSize: "1.6rem",
-                    fontWeight: 700,
-                    color: GOLD_DEEP,
-                    opacity: 0.4,
-                    lineHeight: 1,
-                    minWidth: "2rem",
-                    textAlign: "right",
+                    fontSize: "1.05rem",
+                    fontWeight: 600,
+                    color: TEXT_PRIMARY,
+                    marginBottom: "0.4rem",
+                    lineHeight: 1.3,
                   }}
                 >
-                  {String(i + 1).padStart(2, "0")}
-                </div>
-                <div>
-                  <h3
-                    style={{
-                      fontFamily: "'Playfair Display', serif",
-                      fontSize: "1.05rem",
-                      fontWeight: 600,
-                      color: INK,
-                      marginBottom: "0.4rem",
-                      lineHeight: 1.3,
-                    }}
-                  >
-                    {point.title}
-                  </h3>
-                  <p
-                    style={{
-                      fontFamily: "'Montserrat', sans-serif",
-                      fontSize: "0.88rem",
-                      color: INK_SECONDARY,
-                      lineHeight: 1.75,
-                      margin: 0,
-                    }}
-                  >
-                    {point.desc}
-                  </p>
-                </div>
+                  {point.title}
+                </h3>
+                <p
+                  style={{
+                    fontFamily: "'Montserrat', sans-serif",
+                    fontSize: "0.88rem",
+                    color: TEXT_SECONDARY,
+                    lineHeight: 1.75,
+                    margin: 0,
+                  }}
+                >
+                  {point.desc}
+                </p>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -1043,19 +1035,22 @@ export default function Home() {
 
       <div className="gold-divider" />
 
-      {/* FORMULÁRIO DE INSCRIÇÃO */}
+      {/* FORMULÁRIO DE INSCRIÇÃO — seção clara: quebra o ritmo escuro da página */}
       <section
         id="inscricao"
-        style={{ padding: isMobile ? "3.5rem 1.25rem" : "5rem 1.5rem" }}
+        style={{
+          padding: isMobile ? "4rem 1.25rem" : "6rem 1.5rem",
+          backgroundColor: BG_LIGHT,
+        }}
       >
         <div style={{ maxWidth: "520px", margin: "0 auto" }}>
           <div className="animate-fade-in-up" style={{ textAlign: "center", marginBottom: "2.5rem" }}>
-            <p className="section-label" style={{ marginBottom: "0.75rem" }}>
+            <p className="section-label" style={{ marginBottom: "0.75rem", color: GOLD_DEEP }}>
               Inscrição Gratuita
             </p>
             <h2
               className="headline-serif"
-              style={{ fontSize: "clamp(1.8rem, 4vw, 2.6rem)", marginBottom: "0.75rem" }}
+              style={{ fontSize: "clamp(1.8rem, 4vw, 2.6rem)", marginBottom: "0.75rem", color: INK }}
             >
               Garantir Minha Vaga Agora
             </h2>
@@ -1063,7 +1058,7 @@ export default function Home() {
               style={{
                 fontFamily: "'Montserrat', sans-serif",
                 fontSize: "0.85rem",
-                color: TEXT_MUTED,
+                color: INK_SECONDARY,
                 lineHeight: 1.7,
               }}
             >
@@ -1076,7 +1071,8 @@ export default function Home() {
             className="animate-fade-in-up animate-delay-100"
             style={{
               marginBottom: "2.5rem",
-              border: "1px solid rgba(201,168,76,0.18)",
+              backgroundColor: "#FFFFFF",
+              border: "1px solid rgba(122,94,23,0.25)",
               borderRadius: "2px",
               overflow: "hidden",
             }}
@@ -1084,8 +1080,8 @@ export default function Home() {
             {/* Header do bloco */}
             <div
               style={{
-                backgroundColor: "rgba(201,168,76,0.07)",
-                borderBottom: "1px solid rgba(201,168,76,0.18)",
+                backgroundColor: "rgba(201,168,76,0.12)",
+                borderBottom: "1px solid rgba(122,94,23,0.25)",
                 padding: isMobile ? "1rem 1.1rem" : "1rem 1.5rem",
                 display: "flex",
                 alignItems: "center",
@@ -1100,7 +1096,7 @@ export default function Home() {
                   fontWeight: 700,
                   letterSpacing: "0.2em",
                   textTransform: "uppercase",
-                  color: GOLD,
+                  color: GOLD_DEEP,
                   margin: 0,
                 }}
               >
@@ -1116,7 +1112,7 @@ export default function Home() {
                   display: "flex",
                   gap: isMobile ? "0.75rem" : "1rem",
                   padding: isMobile ? "1.1rem 1.1rem" : "1.1rem 1.5rem",
-                  borderBottom: i < BONUSES.length - 1 ? "1px solid rgba(201,168,76,0.08)" : "none",
+                  borderBottom: i < BONUSES.length - 1 ? "1px solid rgba(122,94,23,0.12)" : "none",
                   alignItems: "flex-start",
                 }}
               >
@@ -1125,8 +1121,8 @@ export default function Home() {
                     fontFamily: "'Playfair Display', serif",
                     fontSize: "0.8rem",
                     fontWeight: 700,
-                    color: GOLD,
-                    opacity: 0.45,
+                    color: GOLD_DEEP,
+                    opacity: 0.6,
                     minWidth: "1.4rem",
                     paddingTop: "2px",
                     flexShrink: 0,
@@ -1140,7 +1136,7 @@ export default function Home() {
                       fontFamily: "'Montserrat', sans-serif",
                       fontSize: "0.82rem",
                       fontWeight: 600,
-                      color: TEXT_PRIMARY,
+                      color: INK,
                       margin: "0 0 0.2rem",
                       lineHeight: 1.4,
                     }}
@@ -1151,11 +1147,10 @@ export default function Home() {
                     style={{
                       fontFamily: "'Montserrat', sans-serif",
                       fontSize: "0.7rem",
-                      color: GOLD,
+                      color: GOLD_DEEP,
                       letterSpacing: "0.08em",
                       textTransform: "uppercase",
                       margin: 0,
-                      opacity: 0.7,
                     }}
                   >
                     {b.format}
@@ -1179,7 +1174,7 @@ export default function Home() {
                   fontWeight: 600,
                   letterSpacing: "0.15em",
                   textTransform: "uppercase",
-                  color: TEXT_MUTED,
+                  color: INK_SECONDARY,
                   marginBottom: "0.5rem",
                 }}
               >
@@ -1187,7 +1182,7 @@ export default function Home() {
               </label>
               <input
                 type="text"
-                className="input-dark"
+                className="input-light"
                 placeholder="Seu nome completo"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -1203,7 +1198,7 @@ export default function Home() {
                   fontWeight: 600,
                   letterSpacing: "0.15em",
                   textTransform: "uppercase",
-                  color: TEXT_MUTED,
+                  color: INK_SECONDARY,
                   marginBottom: "0.5rem",
                 }}
               >
@@ -1211,7 +1206,7 @@ export default function Home() {
               </label>
               <input
                 type="email"
-                className="input-dark"
+                className="input-light"
                 placeholder="seu@email.com"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -1227,7 +1222,7 @@ export default function Home() {
                   fontWeight: 600,
                   letterSpacing: "0.15em",
                   textTransform: "uppercase",
-                  color: TEXT_MUTED,
+                  color: INK_SECONDARY,
                   marginBottom: "0.5rem",
                 }}
               >
@@ -1235,7 +1230,7 @@ export default function Home() {
               </label>
               <input
                 type="tel"
-                className="input-dark"
+                className="input-light"
                 placeholder="+55 (11) 99999-9999"
                 value={formData.whatsapp}
                 onChange={(e) => setFormData({ ...formData, whatsapp: e.target.value })}
@@ -1251,7 +1246,7 @@ export default function Home() {
                   fontWeight: 600,
                   letterSpacing: "0.15em",
                   textTransform: "uppercase",
-                  color: TEXT_MUTED,
+                  color: INK_SECONDARY,
                   marginBottom: "0.5rem",
                 }}
               >
@@ -1259,7 +1254,7 @@ export default function Home() {
               </label>
               <input
                 type="text"
-                className="input-dark"
+                className="input-light"
                 placeholder="Ex: São Paulo - SP ou Orlando - FL"
                 value={formData.regiao}
                 onChange={(e) => setFormData({ ...formData, regiao: e.target.value })}
@@ -1275,7 +1270,7 @@ export default function Home() {
                   fontWeight: 600,
                   letterSpacing: "0.15em",
                   textTransform: "uppercase",
-                  color: TEXT_MUTED,
+                  color: INK_SECONDARY,
                   marginBottom: "0.5rem",
                 }}
               >
@@ -1283,7 +1278,7 @@ export default function Home() {
               </label>
               <input
                 type="text"
-                className="input-dark"
+                className="input-light"
                 placeholder="Ex: Empresário do setor de tecnologia"
                 value={formData.profissao}
                 onChange={(e) => setFormData({ ...formData, profissao: e.target.value })}
@@ -1310,7 +1305,7 @@ export default function Home() {
               style={{
                 fontFamily: "'Montserrat', sans-serif",
                 fontSize: "0.72rem",
-                color: TEXT_MUTED,
+                color: INK_SECONDARY,
                 textAlign: "center",
                 lineHeight: 1.6,
                 margin: "0.25rem 0 0",
