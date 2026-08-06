@@ -4,6 +4,8 @@
 
 import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
+import { submitLead } from "@/lib/leads";
+import { useIsMobile } from "@/hooks/useMobile";
 import {
   ChevronDown,
   ChevronRight,
@@ -76,6 +78,7 @@ function useCountdown(target: Date) {
 // Countdown display block
 function CountdownBlock() {
   const { days, hours, minutes, seconds, over } = useCountdown(EVENT_DATE);
+  const isMobile = useIsMobile();
 
   if (over) {
     return (
@@ -130,7 +133,7 @@ function CountdownBlock() {
         style={{
           display: "flex",
           justifyContent: "center",
-          gap: "0.5rem",
+          gap: isMobile ? "0.3rem" : "0.5rem",
           alignItems: "flex-start",
           flexWrap: "wrap",
         }}
@@ -138,7 +141,7 @@ function CountdownBlock() {
         {units.map((unit, i) => (
           <div
             key={unit.label}
-            style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem" }}
+            style={{ display: "flex", alignItems: "flex-start", gap: isMobile ? "0.3rem" : "0.5rem" }}
           >
             <div style={{ textAlign: "center" }}>
               <div
@@ -146,8 +149,8 @@ function CountdownBlock() {
                   backgroundColor: "#111111",
                   border: "1px solid rgba(201,168,76,0.2)",
                   borderRadius: "2px",
-                  padding: "0.75rem 1.25rem",
-                  minWidth: "72px",
+                  padding: isMobile ? "0.6rem 0.5rem" : "0.75rem 1.25rem",
+                  minWidth: isMobile ? "62px" : "72px",
                   position: "relative",
                   overflow: "hidden",
                 }}
@@ -167,7 +170,7 @@ function CountdownBlock() {
                 <span
                   style={{
                     fontFamily: "'Playfair Display', serif",
-                    fontSize: "clamp(2rem, 5vw, 2.8rem)",
+                    fontSize: isMobile ? "1.7rem" : "clamp(2rem, 5vw, 2.8rem)",
                     fontWeight: 700,
                     color: TEXT_PRIMARY,
                     lineHeight: 1,
@@ -199,7 +202,7 @@ function CountdownBlock() {
               <span
                 style={{
                   fontFamily: "'Playfair Display', serif",
-                  fontSize: "clamp(1.8rem, 4vw, 2.4rem)",
+                  fontSize: isMobile ? "1.4rem" : "clamp(1.8rem, 4vw, 2.4rem)",
                   fontWeight: 700,
                   color: GOLD,
                   opacity: 0.4,
@@ -278,7 +281,14 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
 
 export default function Home() {
   const [, navigate] = useLocation();
-  const [formData, setFormData] = useState({ name: "", email: "", whatsapp: "" });
+  const isMobile = useIsMobile();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    whatsapp: "",
+    regiao: "",
+    profissao: "",
+  });
   const [submitting, setSubmitting] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -288,13 +298,27 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.whatsapp) return;
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.whatsapp ||
+      !formData.regiao ||
+      !formData.profissao
+    )
+      return;
     setSubmitting(true);
-    setTimeout(() => {
-      navigate("/obrigado");
-    }, 800);
+    // Envia o lead para o CRM; mesmo se o webhook falhar, o visitante
+    // segue para a página de obrigado (não bloqueia a experiência)
+    await submitLead({
+      nome: formData.name,
+      email: formData.email,
+      telefone: formData.whatsapp,
+      regiao: formData.regiao,
+      profissao: formData.profissao,
+    });
+    navigate("/obrigado");
   };
 
   const learningPoints = [
@@ -356,41 +380,48 @@ export default function Home() {
           left: 0,
           right: 0,
           zIndex: 100,
-          padding: "1rem 2rem",
+          padding: isMobile ? "0.75rem 1rem" : "1rem 2rem",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
+          gap: "0.75rem",
           transition: "background 300ms ease, border-color 300ms ease",
           backgroundColor: scrolled ? "rgba(8,8,8,0.95)" : "transparent",
           backdropFilter: scrolled ? "blur(12px)" : "none",
           borderBottom: scrolled ? "1px solid rgba(201,168,76,0.15)" : "1px solid transparent",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", minWidth: 0 }}>
           <img
             src="/manus-storage/logo-symbol_84ad4f9e.png"
             alt="Logo"
-            style={{ height: "30px", width: "30px", objectFit: "contain" }}
+            style={{ height: isMobile ? "26px" : "30px", width: isMobile ? "26px" : "30px", objectFit: "contain", flexShrink: 0 }}
           />
           <div>
             <div
               style={{
                 fontFamily: "'Montserrat', sans-serif",
-                fontSize: "0.6rem",
+                fontSize: isMobile ? "0.52rem" : "0.6rem",
                 fontWeight: 700,
-                letterSpacing: "0.2em",
+                letterSpacing: isMobile ? "0.12em" : "0.2em",
                 textTransform: "uppercase",
                 color: GOLD,
+                lineHeight: 1.4,
               }}
             >
-              Plano Capital × Hewerton Scheidegger
+              {isMobile ? "Plano Capital" : "Plano Capital × Hewerton Scheidegger"}
             </div>
           </div>
         </div>
         <a
           href="#inscricao"
           className="btn-cta"
-          style={{ fontSize: "0.7rem", padding: "0.6rem 1.5rem" }}
+          style={{
+            fontSize: isMobile ? "0.62rem" : "0.7rem",
+            padding: isMobile ? "0.55rem 1rem" : "0.6rem 1.5rem",
+            flexShrink: 0,
+            whiteSpace: "nowrap",
+          }}
         >
           Garantir Vaga
         </a>
@@ -534,12 +565,21 @@ export default function Home() {
           {/* CTA buttons */}
           <div
             className="animate-fade-in-up animate-delay-400"
-            style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}
+            style={{
+              display: "flex",
+              flexDirection: isMobile ? "column" : "row",
+              gap: "1rem",
+              justifyContent: "center",
+              alignItems: isMobile ? "stretch" : "center",
+              flexWrap: "wrap",
+              maxWidth: isMobile ? "360px" : "none",
+              margin: isMobile ? "0 auto" : undefined,
+            }}
           >
             <a
               href="#inscricao"
               className="btn-cta"
-              style={{ minWidth: "260px" }}
+              style={{ minWidth: isMobile ? "0" : "260px" }}
             >
               Garantir Minha Vaga Agora
             </a>
@@ -584,7 +624,7 @@ export default function Home() {
       <div className="gold-divider" />
 
       {/* O QUE VOCÊ VAI APRENDER */}
-      <section style={{ padding: "5rem 1.5rem", maxWidth: "760px", margin: "0 auto" }}>
+      <section style={{ padding: isMobile ? "3.5rem 1.25rem" : "5rem 1.5rem", maxWidth: "760px", margin: "0 auto" }}>
         <div className="animate-fade-in-up" style={{ marginBottom: "3rem", textAlign: "center" }}>
           <p className="section-label" style={{ marginBottom: "0.75rem" }}>
             Neste Encontro Estratégico
@@ -605,9 +645,9 @@ export default function Home() {
               style={{
                 animationDelay: `${i * 0.08}s`,
                 display: "flex",
-                gap: "1.25rem",
+                gap: isMobile ? "0.9rem" : "1.25rem",
                 alignItems: "flex-start",
-                padding: "1.5rem",
+                padding: isMobile ? "1.25rem 1rem" : "1.5rem",
                 backgroundColor: BG_CARD,
                 borderLeft: `2px solid ${GOLD}`,
                 transition: "background-color 200ms ease",
@@ -668,7 +708,7 @@ export default function Home() {
       {/* PARA QUEM É */}
       <section
         style={{
-          padding: "5rem 1.5rem",
+          padding: isMobile ? "3.5rem 1.25rem" : "5rem 1.5rem",
           backgroundColor: "#0c0c0c",
         }}
       >
@@ -741,14 +781,14 @@ export default function Home() {
       {/* SOBRE O MENTOR */}
       <section
         id="sobre"
-        style={{ padding: "5rem 1.5rem", maxWidth: "900px", margin: "0 auto" }}
+        style={{ padding: isMobile ? "3.5rem 1.25rem" : "5rem 1.5rem", maxWidth: "900px", margin: "0 auto" }}
       >
         <div
           className="animate-fade-in-up"
           style={{
             display: "grid",
-            gridTemplateColumns: "1fr 1.6fr",
-            gap: "3rem",
+            gridTemplateColumns: isMobile ? "1fr" : "1fr 1.6fr",
+            gap: isMobile ? "2rem" : "3rem",
             alignItems: "center",
           }}
         >
@@ -759,6 +799,9 @@ export default function Home() {
               aspectRatio: "3/4",
               overflow: "hidden",
               borderRadius: "2px",
+              maxWidth: isMobile ? "340px" : "none",
+              width: "100%",
+              margin: isMobile ? "0 auto" : undefined,
             }}
           >
             <img
@@ -888,7 +931,7 @@ export default function Home() {
       {/* URGÊNCIA */}
       <section
         style={{
-          padding: "4rem 1.5rem",
+          padding: isMobile ? "3rem 1.25rem" : "4rem 1.5rem",
           backgroundColor: "#0c0c0c",
           textAlign: "center",
         }}
@@ -988,7 +1031,7 @@ export default function Home() {
       {/* FORMULÁRIO DE INSCRIÇÃO */}
       <section
         id="inscricao"
-        style={{ padding: "5rem 1.5rem" }}
+        style={{ padding: isMobile ? "3.5rem 1.25rem" : "5rem 1.5rem" }}
       >
         <div style={{ maxWidth: "520px", margin: "0 auto" }}>
           <div className="animate-fade-in-up" style={{ textAlign: "center", marginBottom: "2.5rem" }}>
@@ -1028,7 +1071,7 @@ export default function Home() {
               style={{
                 backgroundColor: "rgba(201,168,76,0.07)",
                 borderBottom: "1px solid rgba(201,168,76,0.18)",
-                padding: "1rem 1.5rem",
+                padding: isMobile ? "1rem 1.1rem" : "1rem 1.5rem",
                 display: "flex",
                 alignItems: "center",
                 gap: "0.6rem",
@@ -1056,8 +1099,8 @@ export default function Home() {
                 key={i}
                 style={{
                   display: "flex",
-                  gap: "1rem",
-                  padding: "1.1rem 1.5rem",
+                  gap: isMobile ? "0.75rem" : "1rem",
+                  padding: isMobile ? "1.1rem 1.1rem" : "1.1rem 1.5rem",
                   borderBottom: i < BONUSES.length - 1 ? "1px solid rgba(201,168,76,0.08)" : "none",
                   alignItems: "flex-start",
                 }}
@@ -1184,6 +1227,54 @@ export default function Home() {
                 required
               />
             </div>
+            <div>
+              <label
+                style={{
+                  display: "block",
+                  fontFamily: "'Montserrat', sans-serif",
+                  fontSize: "0.7rem",
+                  fontWeight: 600,
+                  letterSpacing: "0.15em",
+                  textTransform: "uppercase",
+                  color: TEXT_MUTED,
+                  marginBottom: "0.5rem",
+                }}
+              >
+                Cidade / Estado onde mora
+              </label>
+              <input
+                type="text"
+                className="input-dark"
+                placeholder="Ex: São Paulo - SP ou Orlando - FL"
+                value={formData.regiao}
+                onChange={(e) => setFormData({ ...formData, regiao: e.target.value })}
+                required
+              />
+            </div>
+            <div>
+              <label
+                style={{
+                  display: "block",
+                  fontFamily: "'Montserrat', sans-serif",
+                  fontSize: "0.7rem",
+                  fontWeight: 600,
+                  letterSpacing: "0.15em",
+                  textTransform: "uppercase",
+                  color: TEXT_MUTED,
+                  marginBottom: "0.5rem",
+                }}
+              >
+                Profissão / Área de atuação
+              </label>
+              <input
+                type="text"
+                className="input-dark"
+                placeholder="Ex: Empresário do setor de tecnologia"
+                value={formData.profissao}
+                onChange={(e) => setFormData({ ...formData, profissao: e.target.value })}
+                required
+              />
+            </div>
 
             <button
               type="submit"
@@ -1222,7 +1313,7 @@ export default function Home() {
       {/* FAQ */}
       <section
         style={{
-          padding: "5rem 1.5rem",
+          padding: isMobile ? "3.5rem 1.25rem" : "5rem 1.5rem",
           backgroundColor: "#0c0c0c",
           maxWidth: "680px",
           margin: "0 auto",
@@ -1252,7 +1343,7 @@ export default function Home() {
       {/* Final CTA */}
       <section
         style={{
-          padding: "5rem 1.5rem",
+          padding: isMobile ? "3.5rem 1.25rem" : "5rem 1.5rem",
           textAlign: "center",
           backgroundImage: "url('/manus-storage/hero-bg_3f0fe8a4.jpg')",
           backgroundSize: "cover",
