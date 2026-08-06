@@ -269,7 +269,7 @@ export default function ThankYou() {
         {/* WhatsApp CTA */}
         <div className="animate-fade-in-up animate-delay-300" style={{ textAlign: "center" }}>
           <a
-            href="https://chat.whatsapp.com/LINK_DO_GRUPO"
+            href="https://chat.whatsapp.com/Eg9HvGtjkk0Gn361tkX1hJ"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-cta"
