@@ -316,15 +316,16 @@ export default function Home() {
     },
     {
       title: "Crescimento sustentável",
-      desc: "Por que a tese \"Você cresce, seus negócios crescem também\" é a única via segura para a escala corporativa.",
+      desc: "Entenda sobre escala, margem, recorrência e captação de recursos.",
     },
   ];
 
   const forWhom = [
-    "Empresários que faturam entre R$50.000 e R$500.000 por mês e atingiram um teto de crescimento.",
+    "Empresários que sabem que sua empresa pode gerar muito mais lucro e caixa do que está gerando atualmente.",
     "Fundadores que sentem que a empresa paralisa quando se ausentam.",
     "Líderes que buscam maturidade decisória e clareza estratégica para expandir operações no Brasil ou nos Estados Unidos.",
     "Profissionais que compreendem que o próximo nível do negócio exige uma nova versão do dono.",
+    "Para empreendedores que querem conhecer e entender novas oportunidades de negócios.",
   ];
 
   const faqItems = [
@@ -494,9 +495,7 @@ export default function Home() {
             }}
           >
             Descubra o método utilizado por empresários de alto nível para escalar operações,
-            organizar processos e recuperar o controle do próprio tempo. Uma masterclass exclusiva
-            para quem já fatura múltiplos cinco e seis dígitos mensais, mas sente que o negócio
-            depende excessivamente do dono.
+            organizar processos e recuperar o controle do próprio tempo.
           </p>
 
           {/* Date/Time info */}
