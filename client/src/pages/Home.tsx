@@ -54,6 +54,13 @@ const TEXT_PRIMARY = "#F5F5F0";
 const TEXT_SECONDARY = "#AAAAAA";
 const TEXT_MUTED = "#666660";
 
+// Seção clara — inversão do tema: fundo marfim, tinta escura, dourado profundo
+// (o dourado original #C9A84C não tem contraste suficiente sobre fundo claro)
+const BG_LIGHT = "#F5F5F0";
+const INK = "#17160F";
+const INK_SECONDARY = "#45443C";
+const GOLD_DEEP = "#7A5E17";
+
 // Countdown hook — target: 25 Aug 2026 20:00 Florida (EDT = UTC-4)
 const EVENT_DATE = new Date("2026-08-25T20:00:00-04:00");
 
@@ -778,14 +785,19 @@ export default function Home() {
 
       <div className="gold-divider" />
 
-      {/* SOBRE O MENTOR */}
+      {/* SOBRE O MENTOR — seção clara: quebra o ritmo escuro da página */}
       <section
         id="sobre"
-        style={{ padding: isMobile ? "3.5rem 1.25rem" : "5rem 1.5rem", maxWidth: "900px", margin: "0 auto" }}
+        style={{
+          padding: isMobile ? "4rem 1.25rem" : "6rem 1.5rem",
+          backgroundColor: BG_LIGHT,
+        }}
       >
         <div
           className="animate-fade-in-up"
           style={{
+            maxWidth: "900px",
+            margin: "0 auto",
             display: "grid",
             gridTemplateColumns: isMobile ? "1fr" : "1fr 1.6fr",
             gap: isMobile ? "2rem" : "3rem",
@@ -802,6 +814,7 @@ export default function Home() {
               maxWidth: isMobile ? "340px" : "none",
               width: "100%",
               margin: isMobile ? "0 auto" : undefined,
+              boxShadow: "0 6px 8px rgba(23,22,15,0.18)",
             }}
           >
             <img
@@ -857,12 +870,12 @@ export default function Home() {
 
           {/* Mentor bio */}
           <div>
-            <p className="section-label" style={{ marginBottom: "0.75rem" }}>
+            <p className="section-label" style={{ marginBottom: "0.75rem", color: GOLD_DEEP }}>
               Sobre o Mentor
             </p>
             <h2
               className="headline-serif"
-              style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)", marginBottom: "1.5rem" }}
+              style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)", marginBottom: "1.5rem", color: INK }}
             >
               20+ anos construindo negócios de alto desempenho
             </h2>
@@ -870,7 +883,7 @@ export default function Home() {
               style={{
                 fontFamily: "'Montserrat', sans-serif",
                 fontSize: "0.9rem",
-                color: TEXT_SECONDARY,
+                color: INK_SECONDARY,
                 lineHeight: 1.9,
                 marginBottom: "1.5rem",
               }}
@@ -883,7 +896,7 @@ export default function Home() {
               style={{
                 fontFamily: "'Montserrat', sans-serif",
                 fontSize: "0.9rem",
-                color: TEXT_SECONDARY,
+                color: INK_SECONDARY,
                 lineHeight: 1.9,
                 marginBottom: "2rem",
               }}
@@ -901,7 +914,7 @@ export default function Home() {
                   fontFamily: "'Playfair Display', serif",
                   fontSize: "1rem",
                   fontStyle: "italic",
-                  color: TEXT_PRIMARY,
+                  color: INK,
                   lineHeight: 1.75,
                   margin: 0,
                 }}
@@ -912,7 +925,7 @@ export default function Home() {
                 style={{
                   fontFamily: "'Montserrat', sans-serif",
                   fontSize: "0.75rem",
-                  color: GOLD,
+                  color: GOLD_DEEP,
                   letterSpacing: "0.1em",
                   textTransform: "uppercase",
                   marginTop: "0.5rem",
@@ -1315,26 +1328,26 @@ export default function Home() {
         style={{
           padding: isMobile ? "3.5rem 1.25rem" : "5rem 1.5rem",
           backgroundColor: "#0c0c0c",
-          maxWidth: "680px",
-          margin: "0 auto",
         }}
       >
-        <div className="animate-fade-in-up" style={{ textAlign: "center", marginBottom: "2.5rem" }}>
-          <p className="section-label" style={{ marginBottom: "0.75rem" }}>
-            Dúvidas Frequentes
-          </p>
-          <h2
-            className="headline-serif"
-            style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.2rem)" }}
-          >
-            Perguntas Frequentes
-          </h2>
-        </div>
+        <div style={{ maxWidth: "680px", margin: "0 auto" }}>
+          <div className="animate-fade-in-up" style={{ textAlign: "center", marginBottom: "2.5rem" }}>
+            <p className="section-label" style={{ marginBottom: "0.75rem" }}>
+              Dúvidas Frequentes
+            </p>
+            <h2
+              className="headline-serif"
+              style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.2rem)" }}
+            >
+              Perguntas Frequentes
+            </h2>
+          </div>
 
-        <div className="animate-fade-in-up animate-delay-200">
-          {faqItems.map((item, i) => (
-            <FaqItem key={i} question={item.question} answer={item.answer} />
-          ))}
+          <div className="animate-fade-in-up animate-delay-200">
+            {faqItems.map((item, i) => (
+              <FaqItem key={i} question={item.question} answer={item.answer} />
+            ))}
+          </div>
         </div>
       </section>
 
