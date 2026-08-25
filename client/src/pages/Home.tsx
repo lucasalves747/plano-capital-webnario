@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { variantFromPath } from "@/lib/variants";
 import { submitLead } from "@/lib/leads";
+import { trackLead } from "@/lib/pixel";
 import { useIsMobile } from "@/hooks/useMobile";
 import {
   ChevronDown,
@@ -328,6 +329,8 @@ export default function Home() {
       profissao: formData.profissao,
       origem: variant.tag,
     });
+    // O lead conta mesmo se o webhook falhar — quem preencheu, se inscreveu
+    trackLead(variant.tag);
     navigate(`${variant.basePath}/obrigado`);
   };
 

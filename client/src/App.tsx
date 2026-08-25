@@ -1,14 +1,32 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { trackPageView } from "@/lib/pixel";
 import { captureTracking } from "@/lib/tracking";
 import NotFound from "@/pages/NotFound";
-import { useEffect } from "react";
-import { Route, Switch } from "wouter";
+import { useEffect, useRef } from "react";
+import { Route, Switch, useLocation } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import ThankYou from "./pages/ThankYou";
 
+
+// Dispara um PageView no Meta Pixel a cada troca de rota. O primeiro
+// carregamento já é contado pelo código base no index.html.
+function PageViewTracker() {
+  const [location] = useLocation();
+  const primeiraRota = useRef(true);
+
+  useEffect(() => {
+    if (primeiraRota.current) {
+      primeiraRota.current = false;
+      return;
+    }
+    trackPageView();
+  }, [location]);
+
+  return null;
+}
 
 function Router() {
   return (
@@ -44,6 +62,7 @@ function App() {
       >
         <TooltipProvider>
           <Toaster />
+          <PageViewTracker />
           <Router />
         </TooltipProvider>
       </ThemeProvider>
