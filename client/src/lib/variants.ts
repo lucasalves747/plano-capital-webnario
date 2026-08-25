@@ -1,7 +1,7 @@
 // Variantes da landing page — mesmo evento, mesma copy, públicos diferentes.
-// A única coisa que muda entre elas é o grupo VIP de destino e a tag do lead,
-// então não existe página duplicada: as duas rotas renderizam os mesmos
-// componentes e leem daqui o que precisa variar.
+// O que muda entre elas é o grupo VIP de destino, a tag do lead e quem aparece
+// na seção de mentores — não existe página duplicada: as duas rotas renderizam
+// os mesmos componentes e leem daqui o que precisa variar.
 
 export type VariantId = "us" | "br";
 
@@ -20,7 +20,42 @@ export interface Variant {
   horario: string;
   /** Exemplo no campo "Cidade / Estado" do formulário. */
   regiaoPlaceholder: string;
+  /** Mentores apresentados na página, na ordem em que aparecem. */
+  mentores: Mentor[];
 }
+
+/** Um mentor apresentado na seção "Sobre o Mentor". */
+export interface Mentor {
+  nome: string;
+  /** Linha de credencial exibida sobre a foto. */
+  papel: string;
+  foto: string;
+  /** Manchete da bio. */
+  headline: string;
+  paragrafos: string[];
+}
+
+const HEWERTON: Mentor = {
+  nome: "Hewerton Scheidegger",
+  papel: "Mentor · Fundador Plano Capital",
+  foto: "/manus-storage/mentor-bg_9ea99b32.jpg",
+  headline: "20+ anos construindo negócios de alto desempenho",
+  paragrafos: [
+    "Empresário com mais de 20 anos de experiência, advogado tributarista, contador e mentor de negócios. Fundador de múltiplas empresas nas áreas de consultoria, tecnologia e finanças.",
+    "Ultraman e Ironman, Hewerton aplica na prática o princípio de que o crescimento empresarial exige uma base pessoal inabalável. Como criador do Método REI e autor de obras voltadas para a prosperidade executiva, ele já guiou centenas de empresários na construção de negócios altamente lucrativos e autogerenciáveis.",
+  ],
+};
+
+const SANTIAGO: Mentor = {
+  nome: "Santiago Vecina",
+  papel: "Mentor · Global Training",
+  foto: "/manus-storage/santiago-vecina.jpg",
+  headline: "Da precisão da medicina à estratégia de alta performance",
+  paragrafos: [
+    "Médico, nutrólogo, empresário e mentor de alta performance. Sua trajetória combina a precisão da ciência médica com a visão estratégica de quem construiu e reconstruiu negócios.",
+    "Baseado em Miami, lidera a Global Training, conectando empresários brasileiros ao ecossistema de alto nível nos EUA. Sua missão é ajudar líderes a pararem de viver abaixo do potencial que Deus criou para eles.",
+  ],
+};
 
 export const VARIANTS: Record<VariantId, Variant> = {
   us: {
@@ -30,6 +65,7 @@ export const VARIANTS: Record<VariantId, Variant> = {
     whatsappGroup: "https://chat.whatsapp.com/Eg9HvGtjkk0Gn361tkX1hJ",
     horario: "8:00 PM (Flórida) | 9:00 PM (Brasília)",
     regiaoPlaceholder: "Ex: São Paulo - SP ou Orlando - FL",
+    mentores: [HEWERTON],
   },
   br: {
     id: "br",
@@ -38,6 +74,7 @@ export const VARIANTS: Record<VariantId, Variant> = {
     whatsappGroup: "https://chat.whatsapp.com/K0HBBlySDwB2GqOZQvBLLk",
     horario: "21h (Brasília) | 20h (Flórida)",
     regiaoPlaceholder: "Ex: São Paulo - SP ou Belo Horizonte - MG",
+    mentores: [SANTIAGO, HEWERTON],
   },
 };
 

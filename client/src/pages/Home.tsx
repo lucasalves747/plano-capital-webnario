@@ -1,6 +1,6 @@
 // Home — Landing Page do Webinário Escala Inteligente
 // Design: Executivo Dourado — fundo preto, dourado como acento, Playfair Display + Montserrat
-// Seções: Hero, O que você vai aprender, Para quem é, Sobre o mentor, Urgência, Formulário, FAQ
+// Seções: Hero, O que você vai aprender, Para quem é, Sobre o(s) mentor(es), Urgência, Formulário, FAQ
 
 import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
@@ -597,7 +597,7 @@ export default function Home() {
               href="#sobre"
               className="btn-outline-gold"
             >
-              Conhecer o Mentor
+              {variant.mentores.length > 1 ? "Conhecer os Mentores" : "Conhecer o Mentor"}
             </a>
           </div>
         </div>
@@ -793,147 +793,148 @@ export default function Home() {
         id="sobre"
         style={{ padding: isMobile ? "3.5rem 1.25rem" : "5rem 1.5rem", maxWidth: "900px", margin: "0 auto" }}
       >
-        <div
-          className="animate-fade-in-up"
-          style={{
-            display: "grid",
-            gridTemplateColumns: isMobile ? "1fr" : "1fr 1.6fr",
-            gap: isMobile ? "2rem" : "3rem",
-            alignItems: "center",
-          }}
-        >
-          {/* Mentor image */}
-          <div
-            style={{
-              position: "relative",
-              aspectRatio: "3/4",
-              overflow: "hidden",
-              borderRadius: "2px",
-              maxWidth: isMobile ? "340px" : "none",
-              width: "100%",
-              margin: isMobile ? "0 auto" : undefined,
-            }}
-          >
-            <img
-              src="/manus-storage/mentor-bg_9ea99b32.jpg"
-              alt="Hewerton Scheidegger"
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-              }}
-            />
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                background:
-                  "linear-gradient(to top, rgba(8,8,8,0.6) 0%, transparent 60%)",
-              }}
-            />
-            <div
-              style={{
-                position: "absolute",
-                bottom: "1.25rem",
-                left: "1.25rem",
-                right: "1.25rem",
-              }}
-            >
-              <p
-                style={{
-                  fontFamily: "'Playfair Display', serif",
-                  fontSize: "1.1rem",
-                  fontWeight: 700,
-                  color: TEXT_PRIMARY,
-                  margin: 0,
-                }}
-              >
-                Hewerton Scheidegger
-              </p>
-              <p
-                style={{
-                  fontFamily: "'Montserrat', sans-serif",
-                  fontSize: "0.7rem",
-                  color: GOLD,
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                  margin: "0.25rem 0 0",
-                }}
-              >
-                Mentor · Fundador Plano Capital
-              </p>
-            </div>
-          </div>
+        {variant.mentores.map((mentor, mentorIndex) => {
+          const isLast = mentorIndex === variant.mentores.length - 1;
 
-          {/* Mentor bio */}
-          <div>
-            <p className="section-label" style={{ marginBottom: "0.75rem" }}>
-              Sobre o Mentor
-            </p>
-            <h2
-              className="headline-serif"
-              style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)", marginBottom: "1.5rem" }}
-            >
-              20+ anos construindo negócios de alto desempenho
-            </h2>
-            <p
+          return (
+            <div
+              key={mentor.nome}
+              className="animate-fade-in-up"
               style={{
-                fontFamily: "'Montserrat', sans-serif",
-                fontSize: "0.9rem",
-                color: TEXT_SECONDARY,
-                lineHeight: 1.9,
-                marginBottom: "1.5rem",
+                display: "grid",
+                gridTemplateColumns: isMobile ? "1fr" : "1fr 1.6fr",
+                gap: isMobile ? "2rem" : "3rem",
+                alignItems: "center",
+                marginTop: mentorIndex === 0 ? 0 : isMobile ? "3.5rem" : "4.5rem",
               }}
             >
-              Empresário com mais de 20 anos de experiência, advogado tributarista, contador e
-              mentor de negócios. Fundador de múltiplas empresas nas áreas de consultoria,
-              tecnologia e finanças.
-            </p>
-            <p
-              style={{
-                fontFamily: "'Montserrat', sans-serif",
-                fontSize: "0.9rem",
-                color: TEXT_SECONDARY,
-                lineHeight: 1.9,
-                marginBottom: "2rem",
-              }}
-            >
-              Ultraman e Ironman, Hewerton aplica na prática o princípio de que o crescimento
-              empresarial exige uma base pessoal inabalável. Como criador do Método REI e autor
-              de obras voltadas para a prosperidade executiva, ele já guiou centenas de
-              empresários na construção de negócios altamente lucrativos e autogerenciáveis.
-            </p>
+              {/* Mentor image */}
+              <div
+                style={{
+                  position: "relative",
+                  aspectRatio: "3/4",
+                  overflow: "hidden",
+                  borderRadius: "2px",
+                  maxWidth: isMobile ? "340px" : "none",
+                  width: "100%",
+                  margin: isMobile ? "0 auto" : undefined,
+                }}
+              >
+                <img
+                  src={mentor.foto}
+                  alt={mentor.nome}
+                  loading="lazy"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                  }}
+                />
+                <div
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    background:
+                      "linear-gradient(to top, rgba(8,8,8,0.6) 0%, transparent 60%)",
+                  }}
+                />
+                <div
+                  style={{
+                    position: "absolute",
+                    bottom: "1.25rem",
+                    left: "1.25rem",
+                    right: "1.25rem",
+                  }}
+                >
+                  <p
+                    style={{
+                      fontFamily: "'Playfair Display', serif",
+                      fontSize: "1.1rem",
+                      fontWeight: 700,
+                      color: TEXT_PRIMARY,
+                      margin: 0,
+                    }}
+                  >
+                    {mentor.nome}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: "'Montserrat', sans-serif",
+                      fontSize: "0.7rem",
+                      color: GOLD,
+                      letterSpacing: "0.1em",
+                      textTransform: "uppercase",
+                      margin: "0.25rem 0 0",
+                    }}
+                  >
+                    {mentor.papel}
+                  </p>
+                </div>
+              </div>
 
-            {/* Quote */}
-            <div className="gold-quote">
-              <p
-                style={{
-                  fontFamily: "'Playfair Display', serif",
-                  fontSize: "1rem",
-                  fontStyle: "italic",
-                  color: TEXT_PRIMARY,
-                  lineHeight: 1.75,
-                  margin: 0,
-                }}
-              >
-                "Você cresce, seus negócios crescem também."
-              </p>
-              <p
-                style={{
-                  fontFamily: "'Montserrat', sans-serif",
-                  fontSize: "0.75rem",
-                  color: GOLD,
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                  marginTop: "0.5rem",
-                  marginBottom: 0,
-                }}
-              >
-                — Tese Central do Plano Capital
-              </p>
+              {/* Mentor bio */}
+              <div>
+                {mentorIndex === 0 && (
+                  <p className="section-label" style={{ marginBottom: "0.75rem" }}>
+                    {variant.mentores.length > 1 ? "Sobre os Mentores" : "Sobre o Mentor"}
+                  </p>
+                )}
+                <h2
+                  className="headline-serif"
+                  style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)", marginBottom: "1.5rem" }}
+                >
+                  {mentor.headline}
+                </h2>
+                {mentor.paragrafos.map((paragrafo, i) => (
+                  <p
+                    key={i}
+                    style={{
+                      fontFamily: "'Montserrat', sans-serif",
+                      fontSize: "0.9rem",
+                      color: TEXT_SECONDARY,
+                      lineHeight: 1.9,
+                      marginBottom:
+                        isLast && i === mentor.paragrafos.length - 1 ? "2rem" : "1.5rem",
+                    }}
+                  >
+                    {paragrafo}
+                  </p>
+                ))}
+
+                {/* Quote — fecha a seção depois do último mentor */}
+                {isLast && (
+                  <div className="gold-quote">
+                    <p
+                      style={{
+                        fontFamily: "'Playfair Display', serif",
+                        fontSize: "1rem",
+                        fontStyle: "italic",
+                        color: TEXT_PRIMARY,
+                        lineHeight: 1.75,
+                        margin: 0,
+                      }}
+                    >
+                      "Você cresce, seus negócios crescem também."
+                    </p>
+                    <p
+                      style={{
+                        fontFamily: "'Montserrat', sans-serif",
+                        fontSize: "0.75rem",
+                        color: GOLD,
+                        letterSpacing: "0.1em",
+                        textTransform: "uppercase",
+                        marginTop: "0.5rem",
+                        marginBottom: 0,
+                      }}
+                    >
+                      — Tese Central do Plano Capital
+                    </p>
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
-        </div>
+          );
+        })}
       </section>
 
       <div className="gold-divider" />
