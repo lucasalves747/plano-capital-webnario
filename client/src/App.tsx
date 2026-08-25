@@ -15,6 +15,9 @@ function Router() {
     <Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/obrigado"} component={ThankYou} />
+      {/* Variante Brasil — mesma página; muda o grupo de WhatsApp e a tag do lead */}
+      <Route path={"/br"} component={Home} />
+      <Route path={"/br/obrigado"} component={ThankYou} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

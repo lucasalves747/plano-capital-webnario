@@ -4,7 +4,9 @@
 
 import { useEffect } from "react";
 import { CheckCircle2, Calendar, Clock, MapPin, Gift, ArrowRight } from "lucide-react";
+import { useLocation } from "wouter";
 import { useIsMobile } from "@/hooks/useMobile";
+import { variantFromPath } from "@/lib/variants";
 
 const GOLD = "#C9A84C";
 const TEXT_PRIMARY = "#F5F5F0";
@@ -38,6 +40,8 @@ const BONUSES = [
 
 export default function ThankYou() {
   const isMobile = useIsMobile();
+  const [location] = useLocation();
+  const variant = variantFromPath(location);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -124,8 +128,8 @@ export default function ThankYou() {
             style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "1.5rem", marginBottom: "2rem" }}
           >
             {[
-              { icon: <Calendar size={16} />, text: "25 de Agosto de 2026" },
-              { icon: <Clock size={16} />, text: "8:00 PM (Flórida) | 9:00 PM (Brasília)" },
+              { icon: <Calendar size={16} />, text: "1º de Setembro de 2026" },
+              { icon: <Clock size={16} />, text: variant.horario },
               { icon: <MapPin size={16} />, text: "Sala Virtual VIP" },
             ].map((item, i) => (
               <div key={i} style={{ display: "flex", alignItems: "center", gap: "0.5rem", color: TEXT_SECONDARY, fontFamily: "'Montserrat', sans-serif", fontSize: "0.85rem" }}>
@@ -269,7 +273,7 @@ export default function ThankYou() {
         {/* WhatsApp CTA */}
         <div className="animate-fade-in-up animate-delay-300" style={{ textAlign: "center" }}>
           <a
-            href="https://chat.whatsapp.com/Eg9HvGtjkk0Gn361tkX1hJ"
+            href={variant.whatsappGroup}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-cta"

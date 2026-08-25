@@ -4,6 +4,7 @@
 
 import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
+import { variantFromPath } from "@/lib/variants";
 import { submitLead } from "@/lib/leads";
 import { useIsMobile } from "@/hooks/useMobile";
 import {
@@ -61,8 +62,8 @@ const INK = "#17160F";
 const INK_SECONDARY = "#45443C";
 const GOLD_DEEP = "#7A5E17";
 
-// Countdown hook — target: 25 Aug 2026 20:00 Florida (EDT = UTC-4)
-const EVENT_DATE = new Date("2026-08-25T20:00:00-04:00");
+// Countdown hook — target: 1 Sep 2026 20:00 Florida (EDT = UTC-4)
+const EVENT_DATE = new Date("2026-09-01T20:00:00-04:00");
 
 function useCountdown(target: Date) {
   const calc = () => {
@@ -287,7 +288,8 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
 }
 
 export default function Home() {
-  const [, navigate] = useLocation();
+  const [location, navigate] = useLocation();
+  const variant = variantFromPath(location);
   const isMobile = useIsMobile();
   const [formData, setFormData] = useState({
     name: "",
@@ -324,8 +326,9 @@ export default function Home() {
       telefone: formData.whatsapp,
       regiao: formData.regiao,
       profissao: formData.profissao,
+      origem: variant.tag,
     });
-    navigate("/obrigado");
+    navigate(`${variant.basePath}/obrigado`);
   };
 
   const learningPoints = [
@@ -368,7 +371,7 @@ export default function Home() {
     {
       question: "Haverá gravação disponível?",
       answer:
-        "Não. O conteúdo é exclusivo para os participantes que estiverem ao vivo no dia 25 de agosto.",
+        "Não. O conteúdo é exclusivo para os participantes que estiverem ao vivo no dia 1º de setembro.",
     },
     {
       question: "Como receberei o link de acesso?",
@@ -499,7 +502,7 @@ export default function Home() {
                 color: GOLD,
               }}
             >
-              Masterclass Gratuita · Ao Vivo · 25 de Agosto de 2026
+              Masterclass Gratuita · Ao Vivo · 1º de Setembro de 2026
             </span>
           </div>
 
@@ -548,8 +551,8 @@ export default function Home() {
             }}
           >
             {[
-              { icon: <Calendar size={15} />, text: "25 de Agosto de 2026" },
-              { icon: <Clock size={15} />, text: "8:00 PM (Flórida) | 9:00 PM (Brasília)" },
+              { icon: <Calendar size={15} />, text: "1º de Setembro de 2026" },
+              { icon: <Clock size={15} />, text: variant.horario },
               { icon: <Lock size={15} />, text: "Transmissão Única · Sem Gravação" },
             ].map((item, i) => (
               <div
@@ -1003,7 +1006,7 @@ export default function Home() {
             {[
               { icon: <Users size={20} />, label: "Vagas Limitadas" },
               { icon: <Lock size={20} />, label: "Sem Gravação" },
-              { icon: <Calendar size={20} />, label: "25 de Agosto" },
+              { icon: <Calendar size={20} />, label: "1º de Setembro" },
             ].map((item, i) => (
               <div
                 key={i}
@@ -1255,7 +1258,7 @@ export default function Home() {
               <input
                 type="text"
                 className="input-light"
-                placeholder="Ex: São Paulo - SP ou Orlando - FL"
+                placeholder={variant.regiaoPlaceholder}
                 value={formData.regiao}
                 onChange={(e) => setFormData({ ...formData, regiao: e.target.value })}
                 required
@@ -1388,7 +1391,7 @@ export default function Home() {
               marginBottom: "2.5rem",
             }}
           >
-            25 de Agosto de 2026 · 8:00 PM (Flórida) | 9:00 PM (Brasília)
+            1º de Setembro de 2026 · {variant.horario}
             <br />
             Transmissão única. Sem gravação. Vagas limitadas.
           </p>

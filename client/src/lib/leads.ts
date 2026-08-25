@@ -17,13 +17,15 @@ export interface LeadInput {
   telefone: string;
   regiao: string;
   profissao: string;
+  /** Tag da variante que originou o lead (ver lib/variants.ts). */
+  origem: string;
 }
 
 export async function submitLead(lead: LeadInput): Promise<boolean> {
   const tracking = getTracking();
 
   const comentarioPartes = [
-    "Inscrição na masterclass gratuita Escala Inteligente (25/08/2026, ao vivo).",
+    "Inscrição na masterclass gratuita Escala Inteligente (01/09/2026, ao vivo).",
     `Enviado em ${new Date().toLocaleString("pt-BR")}.`,
   ];
   if (document.referrer) {
@@ -36,7 +38,7 @@ export async function submitLead(lead: LeadInput): Promise<boolean> {
     telefone: lead.telefone,
     regiao: lead.regiao,
     profissao: lead.profissao,
-    tags: [SITE_TAG, "lead"],
+    tags: [SITE_TAG, "lead", lead.origem],
     redes_sociais: [],
     comentario: comentarioPartes.join(" "),
     link_origem: tracking.link_origem || window.location.href,
@@ -54,6 +56,7 @@ export async function submitLead(lead: LeadInput): Promise<boolean> {
       nome: lead.nome,
       email: lead.email,
       telefone: lead.telefone,
+      origem: lead.origem,
     }),
   ]);
   return crmOk && lcOk;
