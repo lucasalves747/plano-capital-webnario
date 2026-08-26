@@ -25,6 +25,15 @@ function PageViewTracker() {
     trackPageView();
   }, [location]);
 
+  // As âncoras da página (#inscricao, #sobre) não trocam a rota do wouter, então
+  // o PageView delas precisa vir do próprio evento de hash — é isso que faz
+  // "/#inscricao" aparecer no gerenciador de eventos com a URL da seção.
+  useEffect(() => {
+    const aoTrocarAncora = () => trackPageView();
+    window.addEventListener("hashchange", aoTrocarAncora);
+    return () => window.removeEventListener("hashchange", aoTrocarAncora);
+  }, []);
+
   return null;
 }
 

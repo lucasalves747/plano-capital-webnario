@@ -36,3 +36,16 @@ export function trackLead(origem: string) {
     content_category: origem,
   });
 }
+
+/**
+ * Inscrição concluída — evento padrão "CompleteRegistration" do Meta, que
+ * aparece como "Cadastro concluído" no gerenciador. Dispara junto do Lead: o
+ * Lead serve para otimização de campanha, este marca a inscrição em si.
+ */
+export function trackInscricao(origem: string) {
+  track("CompleteRegistration", {
+    content_name: "Masterclass Escala Inteligente",
+    content_category: origem,
+    status: true,
+  });
+}
