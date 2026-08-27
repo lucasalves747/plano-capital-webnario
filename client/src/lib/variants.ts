@@ -11,11 +11,6 @@ export interface Variant {
   basePath: string;
   /** Tag enviada ao CRM para segmentar de onde veio o lead. */
   tag: string;
-  /**
-   * Meta Pixel da variante. Quem inicializa é o código base do index.html,
-   * pelo caminho da URL — se mudar aqui, mudar lá também.
-   */
-  pixelId: string;
   /** Grupo VIP de WhatsApp para onde a página de obrigado encaminha. */
   whatsappGroup: string;
   /**
@@ -67,7 +62,6 @@ export const VARIANTS: Record<VariantId, Variant> = {
     id: "us",
     basePath: "",
     tag: "Estados Unidos",
-    pixelId: "1849456986213300",
     whatsappGroup: "https://chat.whatsapp.com/Eg9HvGtjkk0Gn361tkX1hJ",
     horario: "8:00 PM (Flórida) | 9:00 PM (Brasília)",
     regiaoPlaceholder: "Ex: São Paulo - SP ou Orlando - FL",
@@ -77,7 +71,6 @@ export const VARIANTS: Record<VariantId, Variant> = {
     id: "br",
     basePath: "/br",
     tag: "Brasil",
-    pixelId: "1643323880139413",
     whatsappGroup: "https://chat.whatsapp.com/K0HBBlySDwB2GqOZQvBLLk",
     horario: "21h (Brasília) | 20h (Flórida)",
     regiaoPlaceholder: "Ex: São Paulo - SP ou Belo Horizonte - MG",

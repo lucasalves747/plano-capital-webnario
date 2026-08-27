@@ -20,13 +20,7 @@
       t.src=v;s=b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t,s)}(window,document,'script',
       'https://connect.facebook.net/en_US/fbevents.js');
-      // Cada variante tem o seu pixel: "/br" e "/br/*" usam o do Brasil, o
-      // resto (a variante EUA, na raiz) usa o dos EUA. Mesma lista de
-      // client/src/lib/variants.ts — se mudar lá, muda aqui.
-      var caminho = window.location.pathname;
-      var ehBrasil = caminho === '/br' || caminho.indexOf('/br/') === 0;
-      window.__PIXEL_ID__ = ehBrasil ? '1643323880139413' : '1849456986213300';
-      fbq('init', window.__PIXEL_ID__);
+      fbq('init', '1849456986213300');
       fbq('track', 'PageView');
     </script>
     <noscript>

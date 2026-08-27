@@ -1,9 +1,10 @@
-// Meta Pixel (Facebook) — cada variante da landing page tem o seu (ver
-// `pixelId` em lib/variants.ts). O código base fica no index.html, que escolhe
-// o pixel pelo caminho da URL, carrega antes do React e dispara o PageView do
-// primeiro carregamento. Aqui ficam só os disparos que dependem da navegação
-// SPA e do formulário de inscrição: como só um pixel é inicializado por
-// carregamento, o `fbq("track", ...)` já vai para o pixel certo.
+// Meta Pixel (Facebook) — o mesmo pixel (1849456986213300) nas duas variantes
+// da landing page. O id só aparece no index.html: o código base fica lá para
+// carregar antes do React e disparar o PageView do primeiro carregamento. Aqui
+// ficam só os disparos que dependem da navegação SPA e do formulário.
+//
+// São só dois eventos, de propósito: PageView e CompleteRegistration. Nada de
+// Lead em paralelo — era o mesmo acontecimento contado duas vezes.
 
 declare global {
   interface Window {
@@ -29,18 +30,10 @@ export function trackPageView() {
   track("PageView");
 }
 
-/** Lead — inscrição enviada no formulário. */
-export function trackLead(origem: string) {
-  track("Lead", {
-    content_name: "Masterclass Escala Inteligente",
-    content_category: origem,
-  });
-}
-
 /**
  * Inscrição concluída — evento padrão "CompleteRegistration" do Meta, que
- * aparece como "Cadastro concluído" no gerenciador. Dispara junto do Lead: o
- * Lead serve para otimização de campanha, este marca a inscrição em si.
+ * aparece como "Cadastro concluído" no gerenciador. É o evento de conversão da
+ * página: quem preencheu o formulário chegou até aqui.
  */
 export function trackInscricao(origem: string) {
   track("CompleteRegistration", {
