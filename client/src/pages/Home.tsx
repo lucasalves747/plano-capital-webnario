@@ -521,9 +521,9 @@ export default function Home() {
           >
             O caminho estratégico para{" "}
             <span style={{ color: GOLD, fontStyle: "italic" }}>
-              dobrar o faturamento
+              dobrar seu faturamento
             </span>{" "}
-            da sua empresa sem sacrificar sua vida pessoal.
+            sem sacrificar sua vida pessoal.
           </h1>
 
           {/* Sub-headline */}

@@ -1,9 +1,9 @@
-// Meta Pixel (Facebook) — o mesmo pixel nas duas variantes da landing page.
-// O código base fica no index.html, para carregar antes do React e disparar o
-// PageView do primeiro carregamento. Aqui ficam só os disparos que dependem da
-// navegação SPA e do formulário de inscrição.
-
-export const PIXEL_ID = "1643323880139413";
+// Meta Pixel (Facebook) — cada variante da landing page tem o seu (ver
+// `pixelId` em lib/variants.ts). O código base fica no index.html, que escolhe
+// o pixel pelo caminho da URL, carrega antes do React e dispara o PageView do
+// primeiro carregamento. Aqui ficam só os disparos que dependem da navegação
+// SPA e do formulário de inscrição: como só um pixel é inicializado por
+// carregamento, o `fbq("track", ...)` já vai para o pixel certo.
 
 declare global {
   interface Window {
