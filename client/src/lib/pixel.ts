@@ -1,7 +1,9 @@
-// Meta Pixel (Facebook) — o mesmo pixel (1849456986213300) nas duas variantes
-// da landing page. O id só aparece no index.html: o código base fica lá para
-// carregar antes do React e disparar o PageView do primeiro carregamento. Aqui
-// ficam só os disparos que dependem da navegação SPA e do formulário.
+// Meta Pixel (Facebook) — um pixel por variante da landing page:
+//   Brasil (/br): 1741861587087825 · EUA (raiz): 1849456986213300
+// Os ids só aparecem no index.html: o código base fica lá para carregar antes
+// do React, escolher o pixel pelo caminho da URL e disparar o PageView do
+// primeiro carregamento. Como só um pixel é inicializado por visita, os
+// fbq("track", ...) daqui já caem no pixel certo sem precisar saber a variante.
 //
 // São só dois eventos, de propósito: PageView e CompleteRegistration. Nada de
 // Lead em paralelo — era o mesmo acontecimento contado duas vezes.

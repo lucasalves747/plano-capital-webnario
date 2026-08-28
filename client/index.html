@@ -11,6 +11,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <!-- Meta Pixel Code -->
+    <!-- Um pixel por variante: /br usa o pixel do Brasil; o resto do site, o dos EUA.
+         A escolha é feita aqui, uma vez, no carregamento — a SPA nunca troca de
+         variante sem recarregar a página, então o pixel certo vale a visita toda.
+         O <noscript> foi removido de propósito: ele não consegue escolher o id
+         pelo caminho, e sem JavaScript a página nem renderiza. -->
     <script>
       !function(f,b,e,v,n,t,s)
       {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -20,14 +25,23 @@
       t.src=v;s=b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t,s)}(window,document,'script',
       'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '1849456986213300');
+      var path = window.location.pathname;
+      var ehBrasil = path === '/br' || path.indexOf('/br/') === 0;
+      fbq('init', ehBrasil ? '1741861587087825' : '1849456986213300');
       fbq('track', 'PageView');
     </script>
-    <noscript>
-      <img height="1" width="1" style="display:none"
-        src="https://www.facebook.com/tr?id=1849456986213300&ev=PageView&noscript=1" />
-    </noscript>
     <!-- End Meta Pixel Code -->
+    <!-- Microsoft Clarity — gravação de sessões e mapas de calor. Um projeto só
+         para o site inteiro: o Clarity registra a URL de cada visita, então as
+         variantes (/ e /br) podem ser filtradas pelo caminho no painel. -->
+    <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "y97l1sbdvz");
+    </script>
+    <!-- End Microsoft Clarity -->
   </head>
 
   <body>
