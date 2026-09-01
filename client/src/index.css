@@ -202,10 +202,10 @@
   .btn-outline-gold:hover { background-color: rgba(201, 168, 76, 0.1); }
   .btn-outline-gold:active { transform: scale(0.98); }
 
-  /* WhatsApp Button */
+  /* WhatsApp Button — verde do WhatsApp, texto escuro para contraste */
   .btn-whatsapp {
-    background-color: #E8440A;
-    color: #FFFFFF;
+    background-color: #25D366;
+    color: #06210F;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 0.875rem;
@@ -222,7 +222,7 @@
     text-align: center;
     text-decoration: none;
   }
-  .btn-whatsapp:hover { background-color: #FF5520; }
+  .btn-whatsapp:hover { background-color: #34E27A; }
   .btn-whatsapp:active { transform: scale(0.98); }
 
   /* Form input styling */
