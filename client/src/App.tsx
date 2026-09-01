@@ -5,6 +5,7 @@ import { captureTracking } from "@/lib/tracking";
 import NotFound from "@/pages/NotFound";
 import { useEffect, useRef } from "react";
 import { Route, Switch, useLocation } from "wouter";
+import Aula from "./pages/Aula";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
@@ -42,9 +43,12 @@ function Router() {
     <Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/obrigado"} component={ThankYou} />
+      {/* Porta de entrada da sala ao vivo: registra a presença e leva ao Zoom */}
+      <Route path={"/aula"} component={Aula} />
       {/* Variante Brasil — mesma página; muda o grupo de WhatsApp e a tag do lead */}
       <Route path={"/br"} component={Home} />
       <Route path={"/br/obrigado"} component={ThankYou} />
+      <Route path={"/br/aula"} component={Aula} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

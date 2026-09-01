@@ -76,3 +76,34 @@ async function postJson(url: string, payload: unknown): Promise<boolean> {
     return false;
   }
 }
+
+// ─── Presença na aula ao vivo ────────────────────────────────────────────────
+// A página /aula pede só e-mail e telefone antes de mandar a pessoa para a sala
+// do Zoom — é o que permite saber, depois, quem realmente entrou na reunião.
+
+/** Tag que marca quem entrou na sala da masterclass do dia 01/09/2026. */
+export const TAG_PRESENCA = "presente_masterclass_010926";
+
+export interface PresencaInput {
+  email: string;
+  telefone: string;
+}
+
+/**
+ * Marca a presença no contato que já existe no CRM. O e-mail e o telefone são
+ * só a chave de busca — o CRM encontra o contato por eles e acrescenta a tag.
+ *
+ * Por isso o corpo vai deliberadamente enxuto: nome, região, profissão, UTMs e
+ * comentário não são enviados, já que qualquer campo que fosse junto poderia
+ * sobrescrever o que o contato já tem com o vazio deste formulário.
+ *
+ * Não bloqueia o acesso à aula: quem chama isto redireciona para o Zoom mesmo
+ * se o webhook falhar.
+ */
+export async function submitPresenca(presenca: PresencaInput): Promise<boolean> {
+  return postJson(WEBHOOK_URL, {
+    email: presenca.email,
+    telefone: presenca.telefone,
+    tags: [TAG_PRESENCA],
+  });
+}
