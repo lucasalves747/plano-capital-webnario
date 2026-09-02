@@ -240,6 +240,11 @@ export default function ThankYou() {
             link de acesso da aula é enviado.
           </p>
 
+            {/* CTA no topo: a ação precisa estar visível antes de qualquer rolagem */}
+          <div className="animate-fade-in-up animate-delay-500" style={{ marginBottom: "3rem" }}>
+            <GrupoVipButton href={variant.whatsappGroup} isMobile={isMobile} />
+          </div>
+
           {/* Marcador dos dois passos — deixa visível que um deles está aberto */}
           <div
             className="animate-fade-in-up animate-delay-400"
@@ -264,13 +269,7 @@ export default function ThankYou() {
             />
           </div>
 
-          {/* CTA no topo: a ação precisa estar visível antes de qualquer rolagem */}
-          <div className="animate-fade-in-up animate-delay-500" style={{ marginBottom: "2rem" }}>
-            <GrupoVipButton href={variant.whatsappGroup} isMobile={isMobile} />
-            <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: "0.75rem", color: TEXT_MUTED, marginTop: "0.75rem" }}>
-              Leva 10 segundos. Sem isso, você não recebe o link da aula.
-            </p>
-          </div>
+        
 
           <div
             className="animate-fade-in-up animate-delay-500"
