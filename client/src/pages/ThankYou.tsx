@@ -276,7 +276,7 @@ export default function ThankYou() {
             style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "1.5rem", marginBottom: "1.5rem" }}
           >
             {[
-              { icon: <Calendar size={16} />, text: "1º de Setembro de 2026" },
+              { icon: <Calendar size={16} />, text: "8 de Setembro de 2026" },
               { icon: <Clock size={16} />, text: variant.horario },
               { icon: <MapPin size={16} />, text: "Sala Virtual VIP" },
             ].map((item, i) => (

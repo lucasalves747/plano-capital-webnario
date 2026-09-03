@@ -25,7 +25,7 @@ export async function submitLead(lead: LeadInput): Promise<boolean> {
   const tracking = getTracking();
 
   const comentarioPartes = [
-    "Inscrição na masterclass gratuita Escala Inteligente (01/09/2026, ao vivo).",
+    "Inscrição na masterclass gratuita Escala Inteligente (08/09/2026, ao vivo).",
     `Enviado em ${new Date().toLocaleString("pt-BR")}.`,
   ];
   if (document.referrer) {
@@ -81,8 +81,8 @@ async function postJson(url: string, payload: unknown): Promise<boolean> {
 // A página /aula pede só e-mail e telefone antes de mandar a pessoa para a sala
 // do Zoom — é o que permite saber, depois, quem realmente entrou na reunião.
 
-/** Tag que marca quem entrou na sala da masterclass do dia 01/09/2026. */
-export const TAG_PRESENCA = "presente_masterclass_010926";
+/** Tag que marca quem entrou na sala da masterclass do dia 08/09/2026. */
+export const TAG_PRESENCA = "presente_masterclass_080926";
 
 export interface PresencaInput {
   email: string;
