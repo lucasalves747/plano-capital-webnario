@@ -235,9 +235,10 @@ export default function ThankYou() {
             style={{ fontFamily: "'Montserrat', sans-serif", fontSize: "1rem", color: TEXT_SECONDARY, lineHeight: 1.8, marginBottom: "2rem" }}
           >
             Recebemos seus dados para a masterclass{" "}
-            <span style={{ color: GOLD, fontStyle: "italic" }}>Escala Inteligente</span> — mas a
-            sua vaga só é garantida dentro do grupo VIP no WhatsApp. É lá, e somente lá, que o
-            link de acesso da aula é enviado.
+            <span style={{ color: GOLD, fontStyle: "italic" }}>Escala Inteligente</span> — o
+            encontro sobre sair da sobrevivência e construir uma empresa que escala com margem,
+            sem depender só de você. Mas a sua vaga só é garantida dentro do grupo VIP no
+            WhatsApp: é lá, e somente lá, que o link de acesso da aula é enviado.
           </p>
 
             {/* CTA no topo: a ação precisa estar visível antes de qualquer rolagem */}
@@ -308,8 +309,8 @@ export default function ThankYou() {
           </h2>
           <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: "0.95rem", color: TEXT_SECONDARY, lineHeight: 1.9, marginBottom: 0 }}>
             O link da sala é liberado poucos minutos antes de a masterclass começar, e vai
-            exclusivamente para o grupo VIP de WhatsApp — junto com os 3 bônus e os lembretes do
-            dia.{" "}
+            exclusivamente para o grupo VIP de WhatsApp — junto com os 3 bônus que preparam o seu
+            diagnóstico antes da aula e os lembretes do dia.{" "}
             <span style={{ color: TEXT_PRIMARY, fontWeight: 600 }}>
               Quem não está no grupo não recebe o acesso.
             </span>{" "}
@@ -330,7 +331,7 @@ export default function ThankYou() {
           <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "2rem" }}>
             <Gift size={20} style={{ color: GOLD }} />
             <p className="section-label" style={{ marginBottom: 0 }}>
-              3 Bônus Estratégicos liberados no grupo VIP
+              3 Bônus Estratégicos para você chegar à aula sabendo onde está travado
             </p>
           </div>
 

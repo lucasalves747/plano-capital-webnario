@@ -336,45 +336,50 @@ export default function Home() {
 
   const learningPoints = [
     {
+      title: "Como sair do modo sobrevivência",
+      desc: "Por que faturar mais não tira ninguém do sufoco — e o que precisa mudar na estrutura do negócio para o caixa parar de mandar na sua semana.",
+    },
+    {
       title: "A transição do operacional para o estratégico",
-      desc: "Como deixar de ser o funcionário mais caro da sua empresa e assumir a verdadeira posição de CEO.",
+      desc: "Como deixar de ser o funcionário mais caro da sua empresa e assumir de fato a cadeira de dono: decidindo o rumo, não apagando incêndio.",
     },
     {
-      title: "Estruturação de processos escaláveis",
-      desc: "O framework para criar sistemas que funcionam com excelência, independentemente da sua presença física.",
+      title: "A máquina de crescimento: escala com margem",
+      desc: "O framework para transformar um negócio comum em um sistema que cresce com processos, previsibilidade e lucro — e não apenas com mais esforço seu.",
     },
     {
-      title: "O princípio dos 5 Capitais",
-      desc: "Como o alinhamento entre o capital Intelectual, Emocional, Financeiro, Digital e Empresarial destrava o próximo nível de faturamento.",
+      title: "Delegação de alto nível: a empresa sem você no centro",
+      desc: "A metodologia exata para contratar, treinar e reter gente que resolve problema em vez de criar — para a operação seguir rodando quando você não está.",
     },
     {
-      title: "Delegação de alto nível",
-      desc: "A metodologia exata para contratar, treinar e reter talentos que resolvem problemas em vez de criá-los.",
-    },
-    {
-      title: "Crescimento sustentável",
-      desc: "Entenda sobre escala, margem, recorrência e captação de recursos.",
+      title: "O princípio dos 5 Capitais e a riqueza real",
+      desc: "Como o alinhamento entre o capital Intelectual, Emocional, Financeiro, Digital e Empresarial converte crescimento em liberdade financeira e de tempo — e não em uma prisão maior.",
     },
   ];
 
   const forWhom = [
-    "Empresários que sabem que sua empresa pode gerar muito mais lucro e caixa do que está gerando atualmente.",
-    "Fundadores que sentem que a empresa paralisa quando se ausentam.",
-    "Líderes que buscam maturidade decisória e clareza estratégica para expandir operações no Brasil ou nos Estados Unidos.",
-    "Profissionais que compreendem que o próximo nível do negócio exige uma nova versão do dono.",
-    "Para empreendedores que querem conhecer e entender novas oportunidades de negócios.",
+    "Empresários presos ao modo sobrevivência: a empresa fatura, mas o caixa nunca sobra e a vida pessoal paga a conta.",
+    "Fundadores que sabem que o negócio pode gerar muito mais lucro e margem do que gera hoje.",
+    "Donos cuja empresa paralisa quando se ausentam — e que querem uma operação que rode sem depender só deles.",
+    "Líderes que buscam clareza estratégica e maturidade decisória para escalar no Brasil ou nos Estados Unidos.",
+    "Empreendedores que entendem que o próximo nível do negócio exige uma nova versão do dono — e novas oportunidades de capital.",
   ];
 
   const faqItems = [
     {
       question: "O evento é gratuito?",
       answer:
-        "Sim. A masterclass \"Escala Inteligente\" é um evento estratégico 100% gratuito, desenhado para empresários que buscam estruturação e crescimento.",
+        "Sim. A masterclass \"Escala Inteligente\" é um encontro estratégico 100% gratuito, desenhado para empresários que querem sair da sobrevivência e estruturar um negócio que escala com margem.",
     },
     {
       question: "Haverá gravação disponível?",
       answer:
         "Não. O conteúdo é exclusivo para os participantes que estiverem ao vivo no dia 8 de setembro.",
+    },
+    {
+      question: "Preciso já faturar alto para participar?",
+      answer:
+        "Não. O que separa quem aproveita a masterclass não é o tamanho do faturamento, e sim a decisão de parar de crescer no braço e passar a crescer com estrutura, margem e time.",
     },
     {
       question: "Como receberei o link de acesso?",
@@ -513,16 +518,16 @@ export default function Home() {
           <h1
             className="headline-serif animate-fade-in-up animate-delay-100"
             style={{
-              fontSize: "clamp(2.2rem, 5.5vw, 3.8rem)",
+              fontSize: "clamp(1.9rem, 4.6vw, 3.2rem)",
               marginBottom: "1.5rem",
-              lineHeight: 1.12,
+              lineHeight: 1.15,
             }}
           >
-            O caminho estratégico para{" "}
+            O caminho estratégico para sair da sobrevivência,{" "}
             <span style={{ color: GOLD, fontStyle: "italic" }}>
-              dobrar seu faturamento
+              escalar seu negócio e conquistar liberdade financeira e de tempo
             </span>{" "}
-            sem sacrificar sua vida pessoal.
+            — sem sacrificar sua vida pessoal.
           </h1>
 
           {/* Sub-headline */}
@@ -538,8 +543,9 @@ export default function Home() {
               margin: "0 auto 2.5rem",
             }}
           >
-            Descubra o método utilizado por empresários de alto nível para escalar operações,
-            organizar processos e recuperar o controle do próprio tempo.
+            Descubra como empresários de alto nível transformam negócios comuns em máquinas de
+            crescimento — gerando escala, margem e riqueza real, com a empresa funcionando sem
+            depender só deles.
           </p>
 
           {/* Date/Time info */}
@@ -646,8 +652,21 @@ export default function Home() {
             className="headline-serif"
             style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)" }}
           >
-            O que você vai aprender
+            O caminho, passo a passo
           </h2>
+          <p
+            style={{
+              fontFamily: "'Montserrat', sans-serif",
+              fontSize: "0.9rem",
+              color: TEXT_SECONDARY,
+              lineHeight: 1.8,
+              maxWidth: "560px",
+              margin: "1rem auto 0",
+            }}
+          >
+            Os cinco movimentos que separam um negócio que consome o dono de uma máquina de
+            crescimento que gera escala, margem e tempo livre.
+          </p>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
@@ -734,8 +753,21 @@ export default function Home() {
               className="headline-serif"
               style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)" }}
             >
-              Para quem é este webinário
+              Para quem é esta masterclass
             </h2>
+            <p
+              style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontSize: "0.9rem",
+                color: TEXT_SECONDARY,
+                lineHeight: 1.8,
+                maxWidth: "560px",
+                margin: "1rem auto 0",
+              }}
+            >
+              Não é para quem procura mais uma ideia. É para quem decidiu mudar a estrutura do
+              próprio negócio.
+            </p>
           </div>
 
           <div
@@ -990,9 +1022,9 @@ export default function Home() {
               marginBottom: "2rem",
             }}
           >
-            O conteúdo compartilhado envolve estratégias de negócios aplicadas no ecossistema
-            Plano Capital e requer presença em tempo real. As vagas na sala virtual são limitadas
-            para garantir a qualidade da transmissão.
+            O conteúdo envolve as estratégias de escala, margem e estruturação aplicadas dentro do
+            ecossistema Plano Capital — e é discutido em tempo real, com espaço para perguntas. As
+            vagas na sala virtual são limitadas para garantir a qualidade da transmissão.
           </p>
 
           {/* COUNTDOWN */}
@@ -1059,7 +1091,7 @@ export default function Home() {
               className="headline-serif"
               style={{ fontSize: "clamp(1.8rem, 4vw, 2.6rem)", marginBottom: "0.75rem", color: INK }}
             >
-              Garantir Minha Vaga Agora
+              Reserve sua vaga na masterclass
             </h2>
             <p
               style={{
@@ -1069,7 +1101,8 @@ export default function Home() {
                 lineHeight: 1.7,
               }}
             >
-              Preencha os dados abaixo para reservar sua vaga na masterclass.
+              Preencha os dados abaixo e dê o primeiro passo para tirar o seu negócio da
+              sobrevivência.
             </p>
           </div>
 
@@ -1383,7 +1416,7 @@ export default function Home() {
             className="headline-serif animate-fade-in-up animate-delay-100"
             style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)", marginBottom: "1rem" }}
           >
-            O próximo nível do seu negócio começa aqui.
+            Sua empresa pode crescer sem consumir a sua vida.
           </h2>
           <p
             className="animate-fade-in-up animate-delay-200"

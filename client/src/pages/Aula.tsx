@@ -136,13 +136,14 @@ export default function Aula() {
               className="headline-serif"
               style={{ fontSize: "clamp(1.8rem, 5vw, 2.6rem)", marginBottom: "1rem" }}
             >
-              Acesso à sala da aula
+              Acesso à sala da masterclass
             </h1>
             <p style={{ fontSize: "0.95rem", color: TEXT_SECONDARY, lineHeight: 1.8, margin: 0 }}>
               Confirme o <strong style={{ color: TEXT_PRIMARY, fontWeight: 600 }}>mesmo e-mail e
               WhatsApp que você usou na inscrição</strong> para registrar sua presença. Em
               seguida você será levado direto para a sala do{" "}
-              <span style={{ color: GOLD, fontStyle: "italic" }}>Escala Inteligente</span>.
+              <span style={{ color: GOLD, fontStyle: "italic" }}>Escala Inteligente</span> — o
+              caminho para escalar seu negócio com margem e liberdade de tempo.
             </p>
           </div>
 
