@@ -63,8 +63,8 @@ const INK = "#17160F";
 const INK_SECONDARY = "#45443C";
 const GOLD_DEEP = "#7A5E17";
 
-// Countdown hook — target: 8 Sep 2026 20:00 Florida (EDT = UTC-4)
-const EVENT_DATE = new Date("2026-09-08T20:00:00-04:00");
+// Countdown hook — target: 29 Sep 2026 20:00 Florida (EDT = UTC-4)
+const EVENT_DATE = new Date("2026-09-29T20:00:00-04:00");
 
 function useCountdown(target: Date) {
   const calc = () => {
@@ -374,7 +374,7 @@ export default function Home() {
     {
       question: "Haverá gravação disponível?",
       answer:
-        "Não. O conteúdo é exclusivo para os participantes que estiverem ao vivo no dia 8 de setembro.",
+        "Não. O conteúdo é exclusivo para os participantes que estiverem ao vivo no dia 29 de setembro.",
     },
     {
       question: "Preciso já faturar alto para participar?",
@@ -510,7 +510,7 @@ export default function Home() {
                 color: GOLD,
               }}
             >
-              Masterclass Gratuita · Ao Vivo · 8 de Setembro de 2026
+              Masterclass Gratuita · Ao Vivo · 29 de Setembro de 2026
             </span>
           </div>
 
@@ -560,7 +560,7 @@ export default function Home() {
             }}
           >
             {[
-              { icon: <Calendar size={15} />, text: "8 de Setembro de 2026" },
+              { icon: <Calendar size={15} />, text: "29 de Setembro de 2026" },
               { icon: <Clock size={15} />, text: variant.horario },
               { icon: <Lock size={15} />, text: "Transmissão Única · Sem Gravação" },
             ].map((item, i) => (
@@ -1042,7 +1042,7 @@ export default function Home() {
             {[
               { icon: <Users size={20} />, label: "Vagas Limitadas" },
               { icon: <Lock size={20} />, label: "Sem Gravação" },
-              { icon: <Calendar size={20} />, label: "8 de Setembro" },
+              { icon: <Calendar size={20} />, label: "29 de Setembro" },
             ].map((item, i) => (
               <div
                 key={i}
@@ -1428,7 +1428,7 @@ export default function Home() {
               marginBottom: "2.5rem",
             }}
           >
-            8 de Setembro de 2026 · {variant.horario}
+            29 de Setembro de 2026 · {variant.horario}
             <br />
             Transmissão única. Sem gravação. Vagas limitadas.
           </p>
