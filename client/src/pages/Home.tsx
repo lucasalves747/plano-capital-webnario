@@ -527,7 +527,7 @@ export default function Home() {
             <span style={{ color: GOLD, fontStyle: "italic" }}>
               escalar seu negócio e conquistar liberdade financeira e de tempo
             </span>{" "}
-            — sem sacrificar sua vida pessoal.
+             sem sacrificar sua vida pessoal.
           </h1>
 
           {/* Sub-headline */}

@@ -235,7 +235,7 @@ export default function ThankYou() {
             style={{ fontFamily: "'Montserrat', sans-serif", fontSize: "1rem", color: TEXT_SECONDARY, lineHeight: 1.8, marginBottom: "2rem" }}
           >
             Recebemos seus dados para a masterclass{" "}
-            <span style={{ color: GOLD, fontStyle: "italic" }}>Escala Inteligente</span> — o
+            <span style={{ color: GOLD, fontStyle: "italic" }}>Escala Inteligente</span> o
             encontro sobre sair da sobrevivência e construir uma empresa que escala com margem,
             sem depender só de você. Mas a sua vaga só é garantida dentro do grupo VIP no
             WhatsApp: é lá, e somente lá, que o link de acesso da aula é enviado.
